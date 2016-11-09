@@ -7,7 +7,7 @@ MAINTAINER Intel Corp. (http://www.intel.com)
 
 
 
-RUN mkdir -p /usr/share/nova-novncproxy-source && git clone https://github.com/kanaka/noVNC.git /usr/share/nova-novncproxy-source/nova-novncproxy && pushd /usr/share/nova-novncproxy-source/nova-novncproxy && git checkout f75e4d3caa14bdeabba190d7465601e94aa97e03 && popd
+RUN mkdir -p /usr/share/nova-novncproxy-source && git clone https://github.com/kanaka/noVNC.git /usr/share/nova-novncproxy-source/nova-novncproxy && pushd /usr/share/nova-novncproxy-source/nova-novncproxy && git checkout 5230ab676472cc48c06237ea861938c905782651 && popd
 
 RUN cd /usr/share \
     && ln -s nova-novncproxy-source/* novnc \
