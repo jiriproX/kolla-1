@@ -53,3 +53,12 @@ RUN apt-get -y install --no-install-recommends haproxy \
     && apt-get -y install -f \
     && apt-get clean
 {% endmacro %}
+
+
+{% macro sed(file='', expressions=[]) -%}
+{% if file != '' and expressions|length >0 %}
+    RUN {% for expression in expressions %} sed -i "{{ file }}" -e "{{ expression }}" {% if not loop.last %} && {% endif %} {% endfor %}
+{% else %}
+    RUN echo "file and expressions must be set to use the sed macro"; /bin/false
+{% endif %}
+{%- endmacro %}
