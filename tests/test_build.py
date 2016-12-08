@@ -82,6 +82,7 @@ class BuildTestCentosBinary(BuildTest, base.BaseTestCase):
         "vitrage-base",
         "vmtp",
         "zun-base",
+        "ovsdpdk"
     ]
 
     def setUp(self):
@@ -94,6 +95,7 @@ class BuildTestCentosSource(BuildTest, base.BaseTestCase):
     excluded_images = [
         "kafka",
         "mistral-base",
+        "ovsdpdk"
     ]
 
     def setUp(self):
@@ -157,6 +159,7 @@ class BuildTestOracleLinuxBinary(BuildTest, base.BaseTestCase):
         "vitrage-base",
         "vmtp",
         "zun-base",
+        "ovsdpdk"
     ]
 
     def setUp(self):
@@ -168,6 +171,7 @@ class BuildTestOracleLinuxBinary(BuildTest, base.BaseTestCase):
 class BuildTestOracleLinuxSource(BuildTest, base.BaseTestCase):
     excluded_images = [
         "kafka",
+        "ovsdpdk"
     ]
 
     def setUp(self):
