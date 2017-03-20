@@ -1,0 +1,14 @@
+FROM intelonp/centos-source-kuryr-base:2.4.20170320
+MAINTAINER Intel Corp. (http://www.intel.com)
+
+
+
+
+
+RUN mkdir -p /kuryr-libnetwork-source && git clone git://git.openstack.org/openstack/kuryr-libnetwork /kuryr-libnetwork-source/kuryr-libnetwork && pushd /kuryr-libnetwork-source/kuryr-libnetwork && git checkout 21083ce51c9c0391eb73f14e9777d63398405132 && popd
+
+RUN ln -s kuryr-libnetwork-source/* kuryr-libnetwork \
+    && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /kuryr-libnetwork
+
+
+

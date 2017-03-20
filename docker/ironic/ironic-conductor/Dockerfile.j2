@@ -25,9 +25,7 @@ MAINTAINER {{ maintainer }}
             'pysnmp',
             'python-UcsSdk',
             'openwsman-python',
-            'python2-ImcSdk',
-            'shellinabox',
-            'socat'
+            'python2-ImcSdk'
         ] %}
     {% elif base_distro in ['ubuntu'] %}
         # TODO(jeffrey4l): no python-dracclient, python-oneviewclient, UcsSdk,
@@ -47,9 +45,7 @@ MAINTAINER {{ maintainer }}
             'python-pysnmp4',
             'python-scciclient',
             'python-seamicroclient',
-            'python-openwsman',
-            'shellinabox',
-            'socat'
+            'python-openwsman'
         ] %}
     {% endif %}
 {% elif install_type == 'source' %}
@@ -62,9 +58,7 @@ MAINTAINER {{ maintainer }}
             'parted',
             'gdisk',
             'psmisc',
-            'fuse',
-            'shellinabox',
-            'socat'
+            'fuse'
         ] %}
     {% elif base_distro in ['ubuntu', 'debian'] %}
         {% set ironic_conductor_packages = [
@@ -74,9 +68,7 @@ MAINTAINER {{ maintainer }}
             'ipmitool',
             'gdisk',
             'psmisc',
-            'parted',
-            'shellinabox',
-            'socat'
+            'parted'
         ] %}
     {% endif %}
 RUN /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt -r /ironic/driver-requirements.txt
