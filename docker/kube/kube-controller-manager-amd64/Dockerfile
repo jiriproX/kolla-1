@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-kube-base:2.4.20170320
+FROM intelonp/centos-source-kube-base:2.4.20170321
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 ENV KUBERNETES_COMPONENT=kube-controller-manager
