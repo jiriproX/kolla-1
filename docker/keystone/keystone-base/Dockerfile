@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-openstack-base:2.4.201703130523
+FROM intelonp/centos-source-openstack-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -16,7 +16,7 @@ RUN usermod --append --home /var/lib/keystone --groups kolla keystone \
 
     
         
-RUN yum -y install httpd mod_wsgi python-ldappool && yum clean all
+RUN yum -y install httpd mod_wsgi git python-ldappool && yum clean all
 RUN sed -i -r 's,^(Listen 80),#\1,' /etc/httpd/conf/httpd.conf
 
     

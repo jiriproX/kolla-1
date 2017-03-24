@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-base:2.4.201703130523
+FROM intelonp/centos-source-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 ENV KUBERNETES_VERSION=v1.5.1

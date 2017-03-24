@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-base:2.4.201703130523
+FROM intelonp/centos-source-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -8,7 +8,7 @@ MAINTAINER Intel Corp. (http://www.intel.com)
 
 
 
-RUN yum -y install redhat-rpm-config redhat-lsb-core pciutils autoconf libtool fuse-devel gcc make autoconf automake libpcap-devel python-devel python-six && yum clean all
+RUN yum -y install redhat-rpm-config redhat-lsb-core pciutils autoconf libtool fuse-devel git gcc make autoconf automake libpcap-devel python-devel python-six && yum clean all
 
 RUN mkdir -p /ovsdpdk-source && git clone https://github.com/openvswitch/ovs /ovsdpdk-source/ovsdpdk && pushd /ovsdpdk-source/ovsdpdk && git checkout f4b0e64cffb4777ff03d48621c3eadcf1d8c19f3 && popd
 

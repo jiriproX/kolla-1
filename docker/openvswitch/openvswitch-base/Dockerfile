@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-base:2.4.201703130523
+FROM intelonp/centos-source-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -9,7 +9,7 @@ MAINTAINER Intel Corp. (http://www.intel.com)
     
 
 
-RUN yum -y install redhat-rpm-config redhat-lsb-core pciutils autoconf libtool fuse-devel gcc make autoconf automake libpcap-devel python-devel python-six && yum clean all
+RUN yum -y install redhat-rpm-config redhat-lsb-core pciutils autoconf libtool fuse-devel git gcc make autoconf automake libpcap-devel python-devel python-six && yum clean all
 
 COPY extend_start.sh /usr/local/bin/kolla_extend_start
 
