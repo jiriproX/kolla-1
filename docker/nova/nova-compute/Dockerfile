@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-nova-base:2.4.20170321
+FROM intelonp/centos-source-nova-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -12,7 +12,7 @@ MAINTAINER Intel Corp. (http://www.intel.com)
 
     
 
-RUN yum -y install libvirt-devel openvswitch qemu-img sysfsutils ceph-common genisoimage iscsi-initiator-utils nfs-utils targetcli python-rtslib && yum clean all
+RUN yum -y install libvirt-devel qemu-img sysfsutils ceph-common genisoimage iscsi-initiator-utils nfs-utils targetcli python-rtslib nfs-utils && yum clean all
 
 
 

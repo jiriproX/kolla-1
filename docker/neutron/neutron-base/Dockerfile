@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-openstack-base:2.4.20170321
+FROM intelonp/centos-source-openstack-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -22,11 +22,12 @@ RUN usermod --append --home /var/lib/neutron --groups kolla neutron \
 
     
 
-RUN yum -y install conntrack-tools dnsmasq dnsmasq-utils ipset keepalived openvswitch python-openvswitch uuid && yum clean all
+RUN yum -y install conntrack-tools dnsmasq dnsmasq-utils ipset keepalived python-openvswitch uuid && yum clean all
 
 RUN mkdir -p /neutron-base-source && git clone git://git.openstack.org/openstack/neutron /neutron-base-source/neutron-base && pushd /neutron-base-source/neutron-base && git checkout 9886bdaf1f1654cd88961615c3cdb89e6d05e82e && popd
 
-ADD plugins-archive /
+RUN mkdir -p /plugins && git clone git://git.openstack.org/openstack/neutron-lbaas-dashboard /plugins/horizon-plugin-neutron-lbaas-dashboard && pushd /plugins/horizon-plugin-neutron-lbaas-dashboard && git checkout a2e63f8488be5687722708489e7f63e5d5c487a0 && popd
+
 RUN ln -s neutron-base-source/* neutron \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /neutron \
     && mkdir -p /etc/neutron /usr/share/neutron \

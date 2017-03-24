@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-cinder-base:2.4.20170321
+FROM intelonp/centos-source-cinder-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -7,7 +7,7 @@ MAINTAINER Intel Corp. (http://www.intel.com)
 
 
     
-RUN yum -y install nfs-utils scsi-target-utils && yum clean all
+RUN yum -y install nfs-utils scsi-target-utils nfs-utils && yum clean all
 
 
 RUN sed -i '1 i include /var/lib/cinder/volumes/*' /etc/tgt/tgtd.conf

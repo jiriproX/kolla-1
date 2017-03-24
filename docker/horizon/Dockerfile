@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-openstack-base:2.4.20170321
+FROM intelonp/centos-source-openstack-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -28,7 +28,8 @@ RUN sed -i -r 's,^(Listen 80),#\1,' /etc/httpd/conf/httpd.conf
 
 RUN mkdir -p /horizon-source && git clone git://git.openstack.org/openstack/horizon /horizon-source/horizon && pushd /horizon-source/horizon && git checkout d011d85926c21f7fa228dad0b2847db66928c422 && popd
 
-ADD plugins-archive /
+RUN mkdir -p /plugins && git clone git://git.openstack.org/openstack/neutron-lbaas-dashboard /plugins/horizon-plugin-neutron-lbaas-dashboard && pushd /plugins/horizon-plugin-neutron-lbaas-dashboard && git checkout a2e63f8488be5687722708489e7f63e5d5c487a0 && popd
+
 RUN ln -s horizon-source/* horizon \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /horizon \
     && mkdir -p /etc/openstack-dashboard \
@@ -47,4 +48,3 @@ RUN ln -s horizon-source/* horizon \
 
 COPY extend_start.sh /usr/local/bin/kolla_extend_start
 RUN chmod 755 /usr/local/bin/kolla_extend_start
-

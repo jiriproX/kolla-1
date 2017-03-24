@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-openstack-base:2.4.20170321
+FROM intelonp/centos-source-openstack-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -20,7 +20,7 @@ RUN usermod --append --home /var/lib/manila --groups kolla manila \
 
     
 
-RUN yum -y install openvswitch && yum clean all
+
 
 RUN mkdir -p /manila-base-source && git clone git://git.openstack.org/openstack/manila /manila-base-source/manila-base && pushd /manila-base-source/manila-base && git checkout 7b60653007e13c8ece27fc2fdaba94e8ecc6c4d3 && popd
 

@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-openstack-base:2.4.20170321
+FROM intelonp/centos-source-openstack-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -21,7 +21,7 @@ RUN yum -y install httpd mod_wsgi python-ldappool python-rados && yum clean all
 RUN mkdir -p /var/www/cgi-bin/gnocchi \
     && sed -i -r 's,^(Listen 80),#\1,' /etc/httpd/conf/httpd.conf
     
-RUN mkdir -p /gnocchi-base-source && git clone git://git.openstack.org/openstack/gnocchi /gnocchi-base-source/gnocchi-base && pushd /gnocchi-base-source/gnocchi-base && git checkout be35a24e0ec632635989f5974a6b63079ed16798 && popd
+RUN mkdir -p /gnocchi-base-source && git clone git://git.openstack.org/openstack/gnocchi /gnocchi-base-source/gnocchi-base && pushd /gnocchi-base-source/gnocchi-base && git checkout 2814b6f40d43d4da41377724b5b9dad15e096350 && popd
 
 
 RUN ln -s gnocchi-base-source/* gnocchi \

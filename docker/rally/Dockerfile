@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-openstack-base:2.4.20170321
+FROM intelonp/centos-source-openstack-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -15,7 +15,7 @@ RUN usermod --append --home /var/lib/rally --groups kolla rally \
 
 
 
-RUN mkdir -p /rally-source && git clone git://git.openstack.org/openstack/rally /rally-source/rally && pushd /rally-source/rally && git checkout 91f22381a2b2f4e9850821c138a8930e2c4d2167 && popd
+RUN mkdir -p /rally-source && git clone git://git.openstack.org/openstack/rally /rally-source/rally && pushd /rally-source/rally && git checkout 31394284f5cab0d457bf3dde524641de46c7b4e0 && popd
 
 RUN ln -s rally-source/* rally \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /rally \

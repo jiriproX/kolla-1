@@ -1,0 +1,9 @@
+FROM intelonp/centos-source-base:17.04.0
+MAINTAINER Intel Corp. (http://www.intel.com)
+
+
+
+RUN rpm --import http://repos.mesosphere.io/el/RPM-GPG-KEY-mesosphere
+
+RUN rpm -Uvh http://repos.mesosphere.com/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm
+

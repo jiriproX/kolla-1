@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-base:2.4.20170321
+FROM intelonp/centos-source-base:17.04.0
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -16,7 +16,7 @@ RUN yum -y install git iproute openssl && yum clean all
         
     
 
-RUN yum -y install gcc gcc-c++ libffi-devel libxml2-devel libxslt-devel libyaml-devel MariaDB-devel openldap-devel openssl-devel postgresql postgresql-devel python-devel sqlite-devel zip && yum clean all
+RUN yum -y install gcc gcc-c++ libffi-devel libxml2-devel libxslt-devel libyaml-devel MariaDB-devel openldap-devel openssl-devel postgresql postgresql-devel python-devel sqlite-devel zip redhat-rpm-config redhat-lsb-core pciutils autoconf libtool fuse-devel gcc make autoconf automake libpcap-devel python-devel python-six && yum clean all
 
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
@@ -26,7 +26,7 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
 
 
 
-RUN mkdir -p /openstack-base-source && git clone https://git.openstack.org/openstack/requirements.git /openstack-base-source/openstack-base && pushd /openstack-base-source/openstack-base && git checkout 53e0011bef8973b23628739a117d53874582c931 && popd
+RUN mkdir -p /openstack-base-source && git clone https://git.openstack.org/openstack/requirements.git /openstack-base-source/openstack-base && pushd /openstack-base-source/openstack-base && git checkout 766b556b55548704892a9c0dd09b0417ad49b2c2 && popd
 
 RUN ln -s openstack-base-source/* /requirements \
     && mkdir -p /var/lib/kolla \
@@ -38,3 +38,16 @@ RUN /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements
 ENV PATH /var/lib/kolla/venv/bin:$PATH
 
 
+
+
+RUN mkdir -p /plugins && git clone https://github.com/openvswitch/ovs /plugins/openstack-base-plugin-ovs-archive-ph && pushd /plugins/openstack-base-plugin-ovs-archive-ph && git checkout f4b0e64cffb4777ff03d48621c3eadcf1d8c19f3 && popd
+
+RUN ln -s /plugins/openstack-base-plugin-ovs-archive-*/ /ovs
+
+RUN cd /ovs && \
+    ./boot.sh && \
+    bash -c 'CFLAGS="$(rpm --eval '%optflags') -O3 -fPIC" LDFLAGS="" ./configure  --prefix=/usr --with-dbdir=/etc/openvswitch --with-rundir=/run/openvswitch' && \
+    make -j $(nproc) && \
+    make install
+
+RUN rm -rf /plugins
