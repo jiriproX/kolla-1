@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-monasca-base:17.04.0-test
+FROM intelonp/centos-source-monasca-base:2.4.201703130523
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
