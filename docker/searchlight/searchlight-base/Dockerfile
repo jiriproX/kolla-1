@@ -15,7 +15,7 @@ RUN usermod --append --home /var/lib/searchlight --groups kolla searchlight \
 
 
 
-RUN mkdir -p /searchlight-base-source && git clone http://tarballs.openstack.org/searchlight/searchlight-1.0.0.tar.gz /searchlight-base-source/searchlight-base && pushd /searchlight-base-source/searchlight-base && git checkout None && popd
+RUN mkdir -p /searchlight-base-source && git clone https://github.com/openstack/searchlight -b stable/ocata /searchlight-base-source/searchlight-base 
 
 RUN ln -s searchlight-base-source/* searchlight \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /searchlight \
