@@ -1,4 +1,4 @@
-FROM intelonp/centos-source-base:17.04.0
+FROM intelonp/centos-source-base:17.04.0-test
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -27,7 +27,8 @@ RUN pip --no-cache-dir install \
 
 # install kolla deploy source
 # create and copy in files as placeholders
-ADD kolla-deploy-archive /kolla-deploy-source
+RUN mkdir -p /kolla-deploy-source && git clone git://github.com/intel-onp/kolla-ansible /kolla-deploy-source/kolla-deploy && pushd /kolla-deploy-source/kolla-deploy && git checkout 380fb1b93a146abec30d3e06f5904a08094020db && popd
+
 RUN ln -s /kolla-deploy-source/* /root/kolla \
     && pip --no-cache-dir install --upgrade /root/kolla \
     && mkdir -p /etc/kolla \
