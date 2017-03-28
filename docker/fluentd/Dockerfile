@@ -23,7 +23,7 @@ RUN yum -y install td-agent gcc-c++ make && yum clean all
 
 RUN ulimit -n 65536 \
     && sed -i -e "s/USER=td-agent/USER=root/" -e "s/GROUP=td-agent/GROUP=root/" /etc/init.d/td-agent \
-    && td-agent-gem install fluent-plugin-parser fluent-plugin-kubernetes_metadata_filter fluent-plugin-elasticsearch fluent-plugin-grep fluent-plugin-grok-parser fluent-plugin-rewrite-tag-filter \
+    && td-agent-gem install fluent-plugin-parser fluent-plugin-kubernetes_metadata_filter fluent-plugin-elasticsearch fluent-plugin-grep fluent-plugin-grok-parser:0.3.1 fluent-plugin-rewrite-tag-filter \
     && rm -f /etc/td-agent/td-agent.conf
 
 COPY fluentd_sudoers /etc/sudoers.d/kolla_fluentd_sudoers
