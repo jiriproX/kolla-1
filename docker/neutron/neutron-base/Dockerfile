@@ -28,6 +28,8 @@ RUN mkdir -p /neutron-base-source && git clone git://git.openstack.org/openstack
 
 RUN mkdir -p /plugins && git clone git://git.openstack.org/openstack/neutron-lbaas-dashboard /plugins/horizon-plugin-neutron-lbaas-dashboard && pushd /plugins/horizon-plugin-neutron-lbaas-dashboard && git checkout a2e63f8488be5687722708489e7f63e5d5c487a0 && popd
 
+RUN mkdir -p /plugins && git clone https://github.com/openstack/neutron-lbaas /plugins/neutron-lbaas && pushd /plugins/neutron-lbaas && git checkout 924eac815439eedc1225e655811706271a300f74 && popd
+
 RUN ln -s neutron-base-source/* neutron \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /neutron \
     && mkdir -p /etc/neutron /usr/share/neutron \
