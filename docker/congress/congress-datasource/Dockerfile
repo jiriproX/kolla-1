@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM intelonp/centos-source-congress-base:test_1
+FROM intelonp/centos-source-congress-base:test_2
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
