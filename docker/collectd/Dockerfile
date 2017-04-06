@@ -1,4 +1,18 @@
-FROM intelonp/centos-source-openstack-base:17.04.0
+# Copyright (c) 2017, Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+FROM intelonp/centos-source-openstack-base:test_1
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -27,7 +41,7 @@ RUN chmod 755 /usr/local/bin/kolla_extend_start \
 
 RUN mkdir -p /collectd-source && git clone https://github.com/collectd/collectd /collectd-source/collectd && pushd /collectd-source/collectd && git checkout 0c157068b398f336b6478cb24fa05243b49fcda4 && popd
 
-RUN mkdir -p /plugins && git clone http://git.openstack.org/openstack/collectd-ceilometer-plugin /plugins/collectd-plugin-collecd-ceilometer-archive-ph && pushd /plugins/collectd-plugin-collecd-ceilometer-archive-ph && git checkout 911961d18a54a10f004d942f5214b10facdc8b98 && popd
+RUN mkdir -p /plugins && git clone http://git.openstack.org/openstack/collectd-ceilometer-plugin /plugins/collectd-plugin-collecd-ceilometer-archive-ph && pushd /plugins/collectd-plugin-collecd-ceilometer-archive-ph && git checkout 911961d18a54a10f004d942f5214b10facdc8b98 && popd 
 
 RUN ln -s /collectd-source/* /collectd && ln -s /plugins/collectd-plugin-collecd-ceilometer-archive-*/ /collectd-ceilometer-plugin
 RUN cd /collectd && \

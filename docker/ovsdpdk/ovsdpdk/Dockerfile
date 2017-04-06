@@ -1,4 +1,18 @@
-FROM intelonp/centos-source-base:17.04.0
+# Copyright (c) 2017, Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+FROM intelonp/centos-source-base:test_1
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -8,11 +22,11 @@ MAINTAINER Intel Corp. (http://www.intel.com)
 
 
 
-RUN yum -y install redhat-rpm-config redhat-lsb-core pciutils autoconf libtool fuse-devel git gcc make autoconf automake libpcap-devel python-devel python-six && yum clean all
+RUN yum -y install redhat-rpm-config redhat-lsb-core pciutils autoconf libtool fuse-devel gcc make autoconf automake libpcap-devel python-devel python-six && yum clean all
 
 RUN mkdir -p /ovsdpdk-source && git clone https://github.com/openvswitch/ovs /ovsdpdk-source/ovsdpdk && pushd /ovsdpdk-source/ovsdpdk && git checkout f4b0e64cffb4777ff03d48621c3eadcf1d8c19f3 && popd
 
-RUN mkdir -p /plugins && git clone http://dpdk.org/git/dpdk /plugins/ovsdpdk-plugin-dpdk-archive-ph && pushd /plugins/ovsdpdk-plugin-dpdk-archive-ph && git checkout d3bfeaaabfd37ecc7d7d2edf2a3b60cc2d913cc9 && popd
+RUN mkdir -p /plugins && git clone http://dpdk.org/git/dpdk /plugins/ovsdpdk-plugin-dpdk-archive-ph && pushd /plugins/ovsdpdk-plugin-dpdk-archive-ph && git checkout d3bfeaaabfd37ecc7d7d2edf2a3b60cc2d913cc9 && popd 
 
 RUN ln -s /ovsdpdk-source/* /ovs && ln -s /plugins/ovsdpdk-plugin-dpdk-archive-*/ /dpdk
 WORKDIR /dpdk

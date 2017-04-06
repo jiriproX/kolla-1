@@ -1,4 +1,18 @@
-FROM intelonp/centos-source-openstack-base:17.04.0
+# Copyright (c) 2017, Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+FROM intelonp/centos-source-openstack-base:test_1
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
@@ -26,9 +40,8 @@ RUN yum -y install conntrack-tools dnsmasq dnsmasq-utils ipset keepalived python
 
 RUN mkdir -p /neutron-base-source && git clone git://git.openstack.org/openstack/neutron /neutron-base-source/neutron-base && pushd /neutron-base-source/neutron-base && git checkout 9886bdaf1f1654cd88961615c3cdb89e6d05e82e && popd
 
-RUN mkdir -p /plugins && git clone git://git.openstack.org/openstack/neutron-lbaas-dashboard /plugins/horizon-plugin-neutron-lbaas-dashboard && pushd /plugins/horizon-plugin-neutron-lbaas-dashboard && git checkout a2e63f8488be5687722708489e7f63e5d5c487a0 && popd
-
-RUN mkdir -p /plugins && git clone https://github.com/openstack/neutron-lbaas /plugins/neutron-lbaas && pushd /plugins/neutron-lbaas && git checkout 924eac815439eedc1225e655811706271a300f74 && popd
+RUN mkdir -p /plugins && git clone git://git.openstack.org/openstack/neutron-lbaas-dashboard /plugins/horizon-plugin-neutron-lbaas-dashboard && pushd /plugins/horizon-plugin-neutron-lbaas-dashboard && git checkout a2e63f8488be5687722708489e7f63e5d5c487a0 && popd 
+RUN mkdir -p /plugins && git clone https://github.com/openstack/neutron-lbaas /plugins/neutron-lbaas && pushd /plugins/neutron-lbaas && git checkout 924eac815439eedc1225e655811706271a300f74 && popd 
 
 RUN ln -s neutron-base-source/* neutron \
     && /var/lib/kolla/venv/bin/pip --no-cache-dir install --upgrade -c requirements/upper-constraints.txt /neutron \
