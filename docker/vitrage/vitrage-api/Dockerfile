@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM intelonp/centos-source-vitrage-base:test_2
+FROM intelonp/centos-source-vitrage-base:test-1
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
