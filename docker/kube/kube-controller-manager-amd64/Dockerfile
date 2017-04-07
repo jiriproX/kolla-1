@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM intelonp/centos-source-kube-base:test1
+FROM intelonp/centos-source-kube-base:001
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 ENV KUBERNETES_COMPONENT=kube-controller-manager
