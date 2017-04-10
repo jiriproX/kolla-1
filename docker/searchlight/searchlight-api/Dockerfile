@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM intelonp/centos-source-searchlight-base:001
+FROM intelonp/centos-source-searchlight-base:0012
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
