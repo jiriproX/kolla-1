@@ -231,7 +231,7 @@ RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Storage \
 
 
 # Update packages
-RUN yum -y install curl sudo tar which lvm2 scsi-target-utils iproute iscsi-initiator-utils && yum clean all
+RUN yum -y install curl git sudo tar which lvm2 scsi-target-utils iproute iscsi-initiator-utils && yum clean all
 
     
     

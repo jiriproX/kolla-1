@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM intelonp/centos-source-swift-base:0013
+FROM intelonp/centos-source-swift-base:0014
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
