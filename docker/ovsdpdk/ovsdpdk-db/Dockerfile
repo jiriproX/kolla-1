@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM intelonp/centos-source-ovsdpdk:0015
+FROM intelonp/centos-source-ovsdpdk:0017
 MAINTAINER Intel Corp. (http://www.intel.com)
 
 
